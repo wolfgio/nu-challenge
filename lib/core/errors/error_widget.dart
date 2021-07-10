@@ -37,7 +37,7 @@ class CustomErrorWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(
-                    'Error: ${error}',
+                    'Error: $error',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
