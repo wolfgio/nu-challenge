@@ -20,7 +20,7 @@ void main() {
     graphQlAdapterImpl = GraphQlAdapterImpl(client: mockGraphQLClient);
   });
 
-  group('GraphqlAdapter - runQuery', () {
+  group('runQuery', () {
     test(
       'Should return [CustomerModel] when query completes',
       () async {
@@ -45,6 +45,8 @@ void main() {
         );
 
         expect(customer, Right(tCustomerModel));
+        verify(mockGraphQLClient.query(any));
+        verifyNoMoreInteractions(mockGraphQLClient);
       },
     );
 
@@ -61,6 +63,8 @@ void main() {
       );
 
       expect(exception, Left(tOperationException));
+      verify(mockGraphQLClient.query(any));
+      verifyNoMoreInteractions(mockGraphQLClient);
     });
   });
 }

@@ -11,12 +11,12 @@ abstract class Failure extends Equatable {
 
 class ServerFailure extends Failure {
   final String message;
-  final String code;
+  final String? code;
   final StackTrace? stackTrace;
 
   ServerFailure({
     required this.message,
-    required this.code,
+    this.code,
     this.stackTrace,
   }) : super([message, code, stackTrace]);
 }
