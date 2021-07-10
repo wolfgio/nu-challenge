@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nu_challenge/core/errors/error_widget.dart';
+import 'package:nu_challenge/core/ui/screens/splash_screen.dart';
 
 import 'core/config/app_setup.dart';
 import 'core/navigation/app_navigator.dart';
-import 'features/customer/infra/customer_setup.dart';
+import 'modules/customer/infra/customer_setup.dart';
 
 void main() {
   runApp(NuChallenge());
@@ -48,7 +49,7 @@ class _NuChallengeState extends State<NuChallenge> {
         return MaterialApp(
           navigatorKey: GetIt.I<AppNavigator>().navigatorKey,
           routes: {
-            '/': (_) => Container(),
+            '/': (_) => SplashScreen(),
           },
           initialRoute: '/',
         );

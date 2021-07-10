@@ -5,9 +5,9 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nu_challenge/core/errors/failures.dart';
 import 'package:nu_challenge/core/usecases/usecase.dart';
-import 'package:nu_challenge/features/customer/domain/entities/customer.dart';
-import 'package:nu_challenge/features/customer/domain/repositories/customer_repository.dart';
-import 'package:nu_challenge/features/customer/domain/usecases/get_customer_usecase.dart';
+import 'package:nu_challenge/modules/customer/domain/entities/customer.dart';
+import 'package:nu_challenge/modules/customer/domain/repositories/customer_repository.dart';
+import 'package:nu_challenge/modules/customer/domain/usecases/get_customer_usecase.dart';
 
 import '../../../../mocks/repositories_mocks.dart';
 import 'get_customer_test.mocks.dart';

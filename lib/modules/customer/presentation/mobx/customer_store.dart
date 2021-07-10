@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:nu_challenge/core/usecases/usecase.dart';
-import 'package:nu_challenge/features/customer/domain/entities/customer.dart';
-import 'package:nu_challenge/features/customer/domain/usecases/get_customer_usecase.dart';
+import 'package:nu_challenge/modules/customer/domain/entities/customer.dart';
+import 'package:nu_challenge/modules/customer/domain/usecases/get_customer_usecase.dart';
 
 part 'customer_store.g.dart';
 

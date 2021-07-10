@@ -5,8 +5,8 @@ import 'package:graphql/client.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nu_challenge/core/adapters/graphql_adapter.dart';
-import 'package:nu_challenge/features/customer/data/graphql/queries.dart';
-import 'package:nu_challenge/features/customer/data/models/customer_model.dart';
+import 'package:nu_challenge/modules/customer/data/graphql/queries.dart';
+import 'package:nu_challenge/modules/customer/data/models/customer_model.dart';
 
 import 'graphql_adapter_test.mocks.dart';
 

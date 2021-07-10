@@ -5,8 +5,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nu_challenge/core/errors/exceptions.dart';
 import 'package:nu_challenge/core/errors/failures.dart';
-import 'package:nu_challenge/features/customer/data/models/customer_model.dart';
-import 'package:nu_challenge/features/customer/data/repositories/customer_repository_impl.dart';
+import 'package:nu_challenge/modules/customer/data/models/customer_model.dart';
+import 'package:nu_challenge/modules/customer/data/repositories/customer_repository_impl.dart';
 
 import '../../../../mocks/datasources_mocks.dart';
 import '../../../../mocks/platform_mocks.dart';

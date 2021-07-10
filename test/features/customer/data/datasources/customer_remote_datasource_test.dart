@@ -5,9 +5,9 @@ import 'package:graphql/client.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:nu_challenge/core/errors/exceptions.dart' as exceptions;
-import 'package:nu_challenge/features/customer/data/datasources/customer_remote_datasource.dart';
-import 'package:nu_challenge/features/customer/data/graphql/queries.dart';
-import 'package:nu_challenge/features/customer/data/models/customer_model.dart';
+import 'package:nu_challenge/modules/customer/data/datasources/customer_remote_datasource.dart';
+import 'package:nu_challenge/modules/customer/data/graphql/queries.dart';
+import 'package:nu_challenge/modules/customer/data/models/customer_model.dart';
 
 import '../../../../mocks/adapter_mocks.dart';
 import 'customer_remote_datasource_test.mocks.dart';
