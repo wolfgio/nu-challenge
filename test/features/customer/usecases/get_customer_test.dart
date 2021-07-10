@@ -9,7 +9,7 @@ import 'package:nu_challenge/features/customer/domain/entities/customer.dart';
 import 'package:nu_challenge/features/customer/domain/repositories/customer_repository.dart';
 import 'package:nu_challenge/features/customer/domain/usecases/get_customer.dart';
 
-import '../../../mocks/repositories/repositories_mocks.dart';
+import '../../../mocks/repositories_mocks.dart';
 import 'get_customer_test.mocks.dart';
 
 @GenerateMocks([CustomerRepositoryTest])

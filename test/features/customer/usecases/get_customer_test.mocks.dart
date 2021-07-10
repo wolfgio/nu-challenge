@@ -10,7 +10,7 @@ import 'package:nu_challenge/core/errors/failures.dart' as _i5;
 import 'package:nu_challenge/features/customer/domain/entities/customer.dart'
     as _i6;
 
-import '../../../mocks/repositories/repositories_mocks.dart' as _i3;
+import '../../../mocks/repositories_mocks.dart' as _i3;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
