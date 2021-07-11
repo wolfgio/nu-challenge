@@ -4,7 +4,7 @@ class CustomerModel extends Customer {
   CustomerModel({
     required String id,
     required String name,
-    required String balance,
+    required double balance,
   }) : super(id: id, name: name, balance: balance);
 
   factory CustomerModel.fromGraphQl(Map<String, dynamic>? data) {
@@ -13,7 +13,7 @@ class CustomerModel extends Customer {
     return CustomerModel(
       id: data['viewer']['id'],
       name: data['viewer']['name'],
-      balance: data['viewer']['balance'],
+      balance: (data['viewer']['balance'] as num).toDouble(),
     );
   }
 }

@@ -1,7 +1,8 @@
 import 'package:mobx/mobx.dart';
-import 'package:nu_challenge/core/usecases/usecase.dart';
-import 'package:nu_challenge/modules/customer/domain/entities/customer.dart';
-import 'package:nu_challenge/modules/customer/domain/usecases/get_customer_usecase.dart';
+
+import '../../../../core/usecases/usecase.dart';
+import '../../domain/entities/customer.dart';
+import '../../domain/usecases/get_customer_usecase.dart';
 
 part 'customer_store.g.dart';
 
@@ -15,12 +16,19 @@ abstract class CustomerStoreBase with Store {
   @observable
   Customer? customer;
 
+  @observable
+  bool isLoading = false;
+
   @action
   Future<void> getCustomer() async {
+    isLoading = true;
+
     final failureOrCustomer = await getCustomerUseCase(NoParams());
 
-    failureOrCustomer.fold(
-      (failure) => throw failure,
+    isLoading = false;
+
+    return failureOrCustomer.fold(
+      (failure) => Future.error(failure),
       (customer) => this.customer = customer,
     );
   }

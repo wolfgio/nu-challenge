@@ -1,9 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nu_challenge/core/ui/styles/colors.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+import '../../navigation/app_navigator.dart';
+import '../styles/colors.dart';
+
+class SplashScreen extends StatefulWidget {
+  final AppNavigator appNavigator;
+
+  const SplashScreen({
+    Key? key,
+    required this.appNavigator,
+  }) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 2), () {
+      widget.appNavigator.pushAndReplace('/home');
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

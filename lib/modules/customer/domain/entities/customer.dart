@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class Customer extends Equatable {
   final String id;
   final String name;
-  final String balance;
+  final double balance;
 
   Customer({
     required this.id,

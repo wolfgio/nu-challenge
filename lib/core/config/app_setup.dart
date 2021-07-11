@@ -2,9 +2,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:nu_challenge/core/navigation/app_navigator.dart';
+import 'package:nu_challenge/core/feedback/scaffold_handler.dart';
 
 import '../adapters/graphql_adapter.dart';
+import '../navigation/app_navigator.dart';
 import '../platform/network_utils.dart';
 
 class AppSetup {
@@ -38,10 +39,17 @@ class AppSetup {
     );
   }
 
+  static void initFeedbackHandlers() {
+    GetIt.I.registerLazySingleton<ScaffoldHandler>(
+      () => ScaffoldHandler(),
+    );
+  }
+
   static Future<void> init() async {
     await loadEnvs();
     initAdapters();
     initPlatformUtils();
     initNavigator();
+    initFeedbackHandlers();
   }
 }

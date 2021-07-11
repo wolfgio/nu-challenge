@@ -31,7 +31,7 @@ void main() {
         final tCustomer = CustomerModel(
           id: faker.guid.guid(),
           name: faker.person.name(),
-          balance: faker.randomGenerator.integer(1000).toString(),
+          balance: faker.randomGenerator.decimal(min: 1000),
         );
         when(mockGraphqlAdapterTest.runQuery(
           query: anyNamed('query'),

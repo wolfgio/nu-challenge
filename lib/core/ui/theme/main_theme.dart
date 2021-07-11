@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nu_challenge/core/ui/styles/colors.dart';
+
+import '../styles/colors.dart';
 
 final mainTheme = ThemeData.dark().copyWith(
   primaryColor: ColorsPallete.primary,
