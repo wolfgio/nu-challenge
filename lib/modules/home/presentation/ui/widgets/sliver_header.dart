@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get_it/get_it.dart';
+import 'package:nu_challenge/core/platform/currency_formats.dart';
 import 'package:nu_challenge/modules/customer/domain/entities/customer.dart';
 
 import '../../../../../core/ui/styles/colors.dart';
@@ -62,7 +64,8 @@ class HomeSliverHeader implements SliverPersistentHeaderDelegate {
                         ),
                       ),
                       Text(
-                        '${customer?.balance ?? ''}',
+                        GetIt.I<CurrencyFormats>()
+                            .formatCurrency(customer?.balance ?? 0),
                         semanticsLabel: 'current balance',
                         style: TextStyle(
                           fontSize: 16,

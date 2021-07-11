@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:nu_challenge/core/errors/failures.dart';
-import 'package:nu_challenge/core/feedback/scaffold_handler.dart';
+import 'package:nu_challenge/core/platform/scaffold_handler.dart';
 
 import '../../../../customer/presentation/mobx/customer_store.dart';
 import '../widgets/sliver_header.dart';
@@ -49,9 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           SliverList(
-            delegate: SliverChildBuilderDelegate((ctx, index) {
-              return Placeholder(fallbackHeight: 200);
-            }),
+            delegate: SliverChildBuilderDelegate(
+              (ctx, index) {
+                return Placeholder(fallbackHeight: 200);
+              },
+            ),
           ),
         ],
       ),

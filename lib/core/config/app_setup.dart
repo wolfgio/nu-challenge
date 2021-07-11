@@ -2,7 +2,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:nu_challenge/core/feedback/scaffold_handler.dart';
+import 'package:nu_challenge/core/platform/currency_formats.dart';
+import 'package:nu_challenge/core/platform/scaffold_handler.dart';
 
 import '../adapters/graphql_adapter.dart';
 import '../navigation/app_navigator.dart';
@@ -31,6 +32,12 @@ class AppSetup {
     GetIt.I.registerLazySingleton<NetworkUtils>(
       () => NetworkUtilsImpl(connectionChecker: InternetConnectionChecker()),
     );
+    GetIt.I.registerLazySingleton<ScaffoldHandler>(
+      () => ScaffoldHandler(),
+    );
+    GetIt.I.registerLazySingleton<CurrencyFormats>(
+      () => CurrencyFormats(),
+    );
   }
 
   static void initNavigator() {
@@ -39,17 +46,10 @@ class AppSetup {
     );
   }
 
-  static void initFeedbackHandlers() {
-    GetIt.I.registerLazySingleton<ScaffoldHandler>(
-      () => ScaffoldHandler(),
-    );
-  }
-
   static Future<void> init() async {
     await loadEnvs();
     initAdapters();
     initPlatformUtils();
     initNavigator();
-    initFeedbackHandlers();
   }
 }

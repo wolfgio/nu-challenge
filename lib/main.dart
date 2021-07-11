@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:nu_challenge/core/feedback/scaffold_handler.dart';
+import 'package:nu_challenge/core/platform/scaffold_handler.dart';
 
 import 'core/config/app_setup.dart';
 import 'core/errors/error_widget.dart';
