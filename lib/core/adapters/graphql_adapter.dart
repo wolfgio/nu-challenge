@@ -6,6 +6,7 @@ abstract class GraphQlAdapter {
     required String query,
     parseData(Map<String, dynamic>? data)?,
     Map<String, dynamic>? params,
+    FetchPolicy? fetchPolicy,
   });
   Future<Either<Object?, dynamic>> runMutation({
     required String mutation,
@@ -52,10 +53,12 @@ class GraphQlAdapterImpl implements GraphQlAdapter {
     required String query,
     Function(Map<String, dynamic>? data)? parseData,
     Map<String, dynamic>? params,
+    FetchPolicy? fetchPolicy,
   }) async {
     try {
       final options = QueryOptions(
         document: gql(query),
+        fetchPolicy: fetchPolicy,
         variables: params ?? {},
       );
 

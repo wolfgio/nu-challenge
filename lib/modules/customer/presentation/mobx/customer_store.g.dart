@@ -24,6 +24,21 @@ mixin _$CustomerStore on CustomerStoreBase, Store {
     });
   }
 
+  final _$isLoadingAtom = Atom(name: 'CustomerStoreBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   final _$getCustomerAsyncAction = AsyncAction('CustomerStoreBase.getCustomer');
 
   @override
@@ -34,7 +49,8 @@ mixin _$CustomerStore on CustomerStoreBase, Store {
   @override
   String toString() {
     return '''
-customer: ${customer}
+customer: ${customer},
+isLoading: ${isLoading}
     ''';
   }
 }

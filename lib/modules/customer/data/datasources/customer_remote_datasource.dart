@@ -20,6 +20,7 @@ class CustomerRemoteDatasourceImpl implements CustomerRemoteDatasource {
   Future<CustomerModel?> getCustomer() async {
     final exceptionORCustomer = await graphQlAdapter.runQuery(
       query: getCustomerQuery,
+      fetchPolicy: FetchPolicy.networkOnly,
       parseData: (data) => CustomerModel.fromGraphQl(data),
     );
 

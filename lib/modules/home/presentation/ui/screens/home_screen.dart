@@ -25,37 +25,44 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
-    widget.customerStore.getCustomer().catchError((error) {
+    _fetchData();
+    super.initState();
+  }
+
+  Future<void> _fetchData() async {
+    await widget.customerStore.getCustomer().catchError((error) {
       if (error is ServerFailure) {
         return widget.scaffoldHandler.showErrorScaffold(message: error.message);
       }
       widget.scaffoldHandler.showErrorScaffold(message: error.toString());
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      body: CustomScrollView(
-        slivers: [
-          Observer(
-            builder: (ctx) => SliverPersistentHeader(
-              delegate: HomeSliverHeader(
-                customer: widget.customerStore.customer,
-                isLoading: widget.customerStore.isLoading,
+      body: RefreshIndicator(
+        onRefresh: () async => _fetchData(),
+        child: CustomScrollView(
+          slivers: [
+            Observer(
+              builder: (_) => SliverPersistentHeader(
+                delegate: HomeSliverHeader(
+                  customer: widget.customerStore.customer,
+                  isLoading: widget.customerStore.isLoading,
+                ),
               ),
             ),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (ctx, index) {
-                return Placeholder(fallbackHeight: 200);
-              },
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (ctx, index) {
+                  return Placeholder(fallbackHeight: 200);
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
