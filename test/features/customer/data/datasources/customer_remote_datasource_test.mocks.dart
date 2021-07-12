@@ -50,12 +50,14 @@ class MockGraphqlAdapterTest extends _i1.Mock
   _i4.Future<_i2.Either<Object?, dynamic>> runMutation(
           {String? mutation,
           dynamic Function(Map<String, dynamic>?)? parseData,
-          Map<String, dynamic>? payload}) =>
+          Map<String, dynamic>? payload,
+          _i5.FetchPolicy? fetchPolicy}) =>
       (super.noSuchMethod(
               Invocation.method(#runMutation, [], {
                 #mutation: mutation,
                 #parseData: parseData,
-                #payload: payload
+                #payload: payload,
+                #fetchPolicy: fetchPolicy
               }),
               returnValue: Future<_i2.Either<Object?, dynamic>>.value(
                   _FakeEither<Object?, dynamic>()))

@@ -11,9 +11,9 @@ class CustomerModel extends Customer {
     if (data == null) throw Exception('Parse data to CustomerModel failed');
 
     return CustomerModel(
-      id: data['viewer']['id'],
-      name: data['viewer']['name'],
-      balance: (data['viewer']['balance'] as num).toDouble(),
+      id: data['id'],
+      name: data['name'],
+      balance: (data['balance'] as num).toDouble(),
     );
   }
 }

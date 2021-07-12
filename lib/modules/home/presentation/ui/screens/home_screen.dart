@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:nu_challenge/core/ui/styles/colors.dart';
-import 'package:nu_challenge/modules/products/presentation/ui/widgets/product_card.dart';
 
 import '../../../../../core/errors/failures.dart';
 import '../../../../../core/platform/scaffold_handler.dart';
+import '../../../../../core/ui/styles/colors.dart';
 import '../../../../customer/presentation/mobx/customer_store.dart';
 import '../../../../products/presentation/mobx/product_store.dart';
+import '../../../../products/presentation/ui/widgets/product_card.dart';
 import '../widgets/sliver_header.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -53,6 +53,24 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void _purchaseProduct(String id) {
+    widget.customerStore.purchaseProduct(id: id).catchError((error) {
+      if (error is ServerFailure) {
+        widget.scaffoldHandler.showErrorScaffold(message: error.message);
+      } else {
+        widget.scaffoldHandler.showErrorScaffold(message: error.toString());
+      }
+
+      return false;
+    }).then((success) {
+      if (success) {
+        widget.scaffoldHandler
+            .showSuccessScaffold(message: 'Purchase successfully made!');
+      }
+      return success;
+    });
+  }
+
   Future<void> _onRefreshHandler() async {
     _fetchUser();
     _fetchProducts();
@@ -74,37 +92,46 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Observer(
-              builder: (_) => widget.productStore.isLoading
-                  ? SliverFillRemaining(
-                      child: Center(
-                        child: CircularProgressIndicator(
-                          color: ColorsPallete.accent,
-                        ),
-                      ),
-                    )
-                  : SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (ctx, index) {
-                          final productStore = widget.productStore;
+            Observer(builder: (_) {
+              final productLoading = widget.productStore.isLoading;
+              final customerLoading = widget.customerStore.isLoading;
 
-                          if (index == 0) {
-                            return Padding(
-                              padding: const EdgeInsets.only(top: 16),
-                              child: ProductCard(
-                                product: productStore.products![index],
-                              ),
-                            );
-                          }
-
-                          return ProductCard(
-                            product: productStore.products![index],
-                          );
-                        },
-                        childCount: widget.productStore.products?.length ?? 0,
-                      ),
+              if (productLoading) {
+                return SliverFillRemaining(
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: ColorsPallete.accent,
                     ),
-            ),
+                  ),
+                );
+              }
+
+              return SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (ctx, index) {
+                    final productStore = widget.productStore;
+
+                    if (index == 0) {
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 16),
+                        child: ProductCard(
+                          product: productStore.products![index],
+                          isLoading: customerLoading,
+                          onPress: _purchaseProduct,
+                        ),
+                      );
+                    }
+
+                    return ProductCard(
+                      product: productStore.products![index],
+                      onPress: _purchaseProduct,
+                      isLoading: customerLoading,
+                    );
+                  },
+                  childCount: widget.productStore.products?.length ?? 0,
+                ),
+              );
+            }),
           ],
         ),
       ),

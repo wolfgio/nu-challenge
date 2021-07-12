@@ -32,6 +32,11 @@ class MockCustomerRemoteDatasourceTest extends _i1.Mock
               returnValue: Future<_i4.CustomerModel?>.value())
           as _i3.Future<_i4.CustomerModel?>);
   @override
+  _i3.Future<_i4.CustomerModel?> purchaseProduct({String? id}) =>
+      (super.noSuchMethod(Invocation.method(#purchaseProduct, [], {#id: id}),
+              returnValue: Future<_i4.CustomerModel?>.value())
+          as _i3.Future<_i4.CustomerModel?>);
+  @override
   String toString() => super.toString();
 }
 

@@ -5,6 +5,7 @@ import '../data/datasources/customer_remote_datasource.dart';
 import '../data/repositories/customer_repository_impl.dart';
 import '../domain/repositories/customer_repository.dart';
 import '../domain/usecases/get_customer_usecase.dart';
+import '../domain/usecases/purchase_product_usecase.dart';
 import '../presentation/mobx/customer_store.dart';
 
 class CustomerSetup implements FeatureSetup {
@@ -30,12 +31,18 @@ class CustomerSetup implements FeatureSetup {
     GetIt.I.registerLazySingleton<GetCustomerUseCase>(
       () => GetCustomerUseCase(repository: GetIt.I()),
     );
+    GetIt.I.registerLazySingleton<PurchaseProductUseCase>(
+      () => PurchaseProductUseCase(repository: GetIt.I()),
+    );
   }
 
   @override
   void initStates() {
     GetIt.I.registerLazySingleton<CustomerStore>(
-      () => CustomerStore(getCustomerUseCase: GetIt.I()),
+      () => CustomerStore(
+        getCustomerUseCase: GetIt.I(),
+        purchaseProductUseCase: GetIt.I(),
+      ),
     );
   }
 

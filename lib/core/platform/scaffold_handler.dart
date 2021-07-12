@@ -22,4 +22,15 @@ class ScaffoldHandler {
       backgroundColor: Colors.redAccent,
     ));
   }
+
+  void showSuccessScaffold({required String message}) {
+    scaffoldKey.currentState?.showSnackBar(SnackBar(
+      content: Text(
+        message,
+        style: TextStyle(color: Colors.white),
+      ),
+      duration: Duration(milliseconds: 1600),
+      backgroundColor: Colors.green,
+    ));
+  }
 }

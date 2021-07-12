@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nu_challenge/core/utils/color_generator.dart';
 
+import '../../utils/color_generator.dart';
 import '../styles/colors.dart';
 
 final mainTheme = ThemeData(

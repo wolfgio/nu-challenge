@@ -7,18 +7,23 @@ import 'package:nu_challenge/core/errors/failures.dart';
 import 'package:nu_challenge/core/usecases/usecase.dart';
 import 'package:nu_challenge/modules/customer/domain/entities/customer.dart';
 import 'package:nu_challenge/modules/customer/domain/usecases/get_customer_usecase.dart';
+import 'package:nu_challenge/modules/customer/domain/usecases/purchase_product_usecase.dart';
 import 'package:nu_challenge/modules/customer/presentation/mobx/customer_store.dart';
 
 import 'customer_store_test.mocks.dart';
 
-@GenerateMocks([GetCustomerUseCase])
+@GenerateMocks([GetCustomerUseCase, PurchaseProductUseCase])
 void main() {
   late MockGetCustomerUseCase getCustomerUseCase;
+  late MockPurchaseProductUseCase purchaseProductUseCase;
   late CustomerStore store;
 
   setUp(() {
     getCustomerUseCase = MockGetCustomerUseCase();
-    store = CustomerStore(getCustomerUseCase: getCustomerUseCase);
+    purchaseProductUseCase = MockPurchaseProductUseCase();
+    store = CustomerStore(
+        getCustomerUseCase: getCustomerUseCase,
+        purchaseProductUseCase: purchaseProductUseCase);
   });
 
   group('getCustomer', () {

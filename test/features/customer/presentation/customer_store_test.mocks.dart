@@ -14,6 +14,8 @@ import 'package:nu_challenge/modules/customer/domain/repositories/customer_repos
     as _i2;
 import 'package:nu_challenge/modules/customer/domain/usecases/get_customer_usecase.dart'
     as _i4;
+import 'package:nu_challenge/modules/customer/domain/usecases/purchase_product_usecase.dart'
+    as _i9;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: comment_references
@@ -45,6 +47,28 @@ class MockGetCustomerUseCase extends _i1.Mock
   @override
   _i5.Future<_i3.Either<_i6.Failure, _i7.Customer>> call(
           _i8.NoParams? params) =>
+      (super.noSuchMethod(Invocation.method(#call, [params]),
+              returnValue: Future<_i3.Either<_i6.Failure, _i7.Customer>>.value(
+                  _FakeEither<_i6.Failure, _i7.Customer>()))
+          as _i5.Future<_i3.Either<_i6.Failure, _i7.Customer>>);
+}
+
+/// A class which mocks [PurchaseProductUseCase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockPurchaseProductUseCase extends _i1.Mock
+    implements _i9.PurchaseProductUseCase {
+  MockPurchaseProductUseCase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i2.CustomerRepository get repository =>
+      (super.noSuchMethod(Invocation.getter(#repository),
+          returnValue: _FakeCustomerRepository()) as _i2.CustomerRepository);
+  @override
+  _i5.Future<_i3.Either<_i6.Failure, _i7.Customer>> call(
+          _i9.PurchaseProductParams? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
               returnValue: Future<_i3.Either<_i6.Failure, _i7.Customer>>.value(
                   _FakeEither<_i6.Failure, _i7.Customer>()))

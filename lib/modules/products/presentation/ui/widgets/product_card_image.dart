@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nu_challenge/core/ui/styles/colors.dart';
+
+import '../../../../../core/ui/styles/colors.dart';
 
 class ProductCardImage extends StatelessWidget {
   final String? url;

@@ -39,5 +39,12 @@ class MockCustomerRepositoryTest extends _i1.Mock
                   _FakeEither<_i5.Failure, _i6.Customer>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.Customer>>);
   @override
+  _i4.Future<_i2.Either<_i5.Failure, _i6.Customer>> purchaseProduct(
+          {String? id}) =>
+      (super.noSuchMethod(Invocation.method(#purchaseProduct, [], {#id: id}),
+              returnValue: Future<_i2.Either<_i5.Failure, _i6.Customer>>.value(
+                  _FakeEither<_i5.Failure, _i6.Customer>()))
+          as _i4.Future<_i2.Either<_i5.Failure, _i6.Customer>>);
+  @override
   String toString() => super.toString();
 }

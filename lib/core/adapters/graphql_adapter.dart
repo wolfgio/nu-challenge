@@ -12,6 +12,7 @@ abstract class GraphQlAdapter {
     required String mutation,
     parseData(Map<String, dynamic>? data)?,
     Map<String, dynamic>? payload,
+    FetchPolicy? fetchPolicy,
   });
 }
 
@@ -25,11 +26,13 @@ class GraphQlAdapterImpl implements GraphQlAdapter {
     required String mutation,
     Function(Map<String, dynamic>? data)? parseData,
     Map<String, dynamic>? payload,
+    FetchPolicy? fetchPolicy,
   }) async {
     try {
       final options = MutationOptions(
         document: gql(mutation),
         variables: payload ?? {},
+        fetchPolicy: fetchPolicy,
       );
 
       final res = await client.mutate(options);

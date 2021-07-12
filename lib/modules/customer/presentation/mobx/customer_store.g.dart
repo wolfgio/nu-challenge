@@ -46,6 +46,15 @@ mixin _$CustomerStore on CustomerStoreBase, Store {
     return _$getCustomerAsyncAction.run(() => super.getCustomer());
   }
 
+  final _$purchaseProductAsyncAction =
+      AsyncAction('CustomerStoreBase.purchaseProduct');
+
+  @override
+  Future<bool> purchaseProduct({required String id}) {
+    return _$purchaseProductAsyncAction
+        .run(() => super.purchaseProduct(id: id));
+  }
+
   @override
   String toString() {
     return '''

@@ -34,4 +34,25 @@ class CustomerRepositoryImpl implements CustomerRepository {
       ));
     }
   }
+
+  @override
+  Future<Either<Failure, Customer>> purchaseProduct({
+    required String id,
+  }) async {
+    if (!await networkUtils.hasInternetAccess) {
+      return Left(NoInternetFailure());
+    }
+
+    try {
+      final customer = await dataSource.purchaseProduct(id: id);
+
+      return Right(customer!);
+    } on ServerException catch (exception) {
+      return Left(ServerFailure(
+        code: exception.code,
+        message: exception.message,
+        stackTrace: exception.stackTrace,
+      ));
+    }
+  }
 }
