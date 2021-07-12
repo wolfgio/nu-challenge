@@ -62,14 +62,11 @@ class ProductCard extends StatelessWidget {
                   ),
                   Semantics(
                     label: 'Buy Button',
-                    child: ElevatedButton.icon(
+                    child: ElevatedButton(
                       onPressed: onPress != null && !isLoading
                           ? () => onPress!(product.id)
                           : null,
-                      icon: !isLoading
-                          ? Icon(Icons.shopping_cart_outlined)
-                          : Container(),
-                      label: isLoading
+                      child: isLoading
                           ? Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 8),
