@@ -25,13 +25,11 @@ void main() {
   }) {
     return MaterialApp(
       home: Scaffold(
-        body: Center(
-          child: ProductCard(
-            product: product,
-            currencyFormats: currencyFormats,
-            onPress: onPress,
-            isLoading: isLoading,
-          ),
+        body: ProductCard(
+          product: product,
+          currencyFormats: currencyFormats,
+          onPress: onPress,
+          isLoading: isLoading,
         ),
       ),
     );
@@ -42,7 +40,7 @@ void main() {
       id: faker.guid.guid(),
       price: faker.randomGenerator.decimal(min: 1000),
       name: faker.lorem.word(),
-      description: faker.lorem.sentence(),
+      description: faker.lorem.word(),
       imageUrl: faker.image.image(),
     );
 
@@ -62,7 +60,7 @@ void main() {
         id: faker.guid.guid(),
         price: faker.randomGenerator.decimal(min: 1000),
         name: faker.lorem.word(),
-        description: faker.lorem.sentence(),
+        description: faker.lorem.word(),
         imageUrl: faker.image.image(),
       );
 
@@ -85,7 +83,7 @@ void main() {
         id: faker.guid.guid(),
         price: faker.randomGenerator.decimal(min: 1000),
         name: faker.lorem.word(),
-        description: faker.lorem.sentence(),
+        description: faker.lorem.word(),
         imageUrl: faker.image.image(),
       );
 

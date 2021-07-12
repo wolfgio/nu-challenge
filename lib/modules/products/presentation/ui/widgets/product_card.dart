@@ -44,13 +44,10 @@ class ProductCard extends StatelessWidget {
                 label: 'Product image',
               ),
               SizedBox(height: 12),
-              Flexible(
-                flex: 1,
-                child: Text(
-                  product.description,
-                  semanticsLabel: 'Product description',
-                  style: textTheme.subtitle2,
-                ),
+              Text(
+                product.description,
+                semanticsLabel: 'Product description',
+                style: textTheme.subtitle2,
               ),
               SizedBox(height: 12),
               Row(

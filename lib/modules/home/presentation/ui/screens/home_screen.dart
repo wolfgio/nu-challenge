@@ -92,6 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 delegate: HomeSliverHeader(
                   customer: widget.customerStore.customer,
                   isLoading: widget.customerStore.isLoading,
+                  currencyFormats: widget.currencyFormats,
                 ),
               ),
             ),
