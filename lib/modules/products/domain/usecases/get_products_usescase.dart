@@ -1,8 +1,8 @@
-import 'package:nu_challenge/core/errors/failures.dart';
+import '../../../../core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
-import 'package:nu_challenge/core/usecases/usecase.dart';
-import 'package:nu_challenge/modules/products/domain/entities/product.dart';
-import 'package:nu_challenge/modules/products/domain/repositories/product_repository.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../entities/product.dart';
+import '../repositories/product_repository.dart';
 
 class GetProductsUseCase implements UseCase<List<Product>, NoParams> {
   final ProductRepository repository;

@@ -2,12 +2,12 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:graphql/client.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:nu_challenge/core/platform/currency_formats.dart';
-import 'package:nu_challenge/core/platform/scaffold_handler.dart';
 
 import '../adapters/graphql_adapter.dart';
 import '../navigation/app_navigator.dart';
+import '../platform/currency_formats.dart';
 import '../platform/network_utils.dart';
+import '../platform/scaffold_handler.dart';
 
 class AppSetup {
   static Future<void> loadEnvs() => dotenv.load(fileName: '.env');

@@ -28,7 +28,7 @@ void main() {
           'viewer': {
             'id': faker.guid.guid(),
             'name': faker.person.name(),
-            'balance': faker.randomGenerator.integer(1000).toString(),
+            'balance': faker.randomGenerator.integer(1000),
           },
         };
         final tCustomerModel = CustomerModel.fromGraphQl(tCustomerData);

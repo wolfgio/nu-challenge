@@ -36,6 +36,7 @@ void main() {
         when(mockGraphqlAdapterTest.runQuery(
           query: anyNamed('query'),
           parseData: anyNamed('parseData'),
+          fetchPolicy: FetchPolicy.networkOnly,
         )).thenAnswer((_) async => Right(tCustomer));
 
         final customer = await remoteDatasource.getCustomer();
@@ -44,6 +45,7 @@ void main() {
         verify(mockGraphqlAdapterTest.runQuery(
           query: getCustomerQuery,
           parseData: anyNamed('parseData'),
+          fetchPolicy: FetchPolicy.networkOnly,
         ));
         verifyNoMoreInteractions(mockGraphqlAdapterTest);
       },
@@ -60,6 +62,7 @@ void main() {
         when(mockGraphqlAdapterTest.runQuery(
           query: anyNamed('query'),
           parseData: anyNamed('parseData'),
+          fetchPolicy: anyNamed('fetchPolicy'),
         )).thenAnswer((_) async => Left(tOperationException));
 
         final call = remoteDatasource.getCustomer;
@@ -71,6 +74,7 @@ void main() {
         verify(mockGraphqlAdapterTest.runQuery(
           query: getCustomerQuery,
           parseData: anyNamed('parseData'),
+          fetchPolicy: FetchPolicy.networkOnly,
         ));
         verifyNoMoreInteractions(mockGraphqlAdapterTest);
       },
