@@ -25,11 +25,9 @@ void main() {
       'Should return [CustomerModel] when query completes',
       () async {
         final tCustomerData = {
-          'viewer': {
-            'id': faker.guid.guid(),
-            'name': faker.person.name(),
-            'balance': faker.randomGenerator.integer(1000),
-          },
+          'id': faker.guid.guid(),
+          'name': faker.person.name(),
+          'balance': faker.randomGenerator.integer(1000),
         };
         final tCustomerModel = CustomerModel.fromGraphQl(tCustomerData);
         final tQueryResult = QueryResult(
