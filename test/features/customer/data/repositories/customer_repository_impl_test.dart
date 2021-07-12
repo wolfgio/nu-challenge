@@ -106,4 +106,66 @@ void main() {
       );
     });
   });
+
+  group('purchaseProduct', () {
+    runTestOnline(() {
+      test(
+        'Should return [CustomerModel] when datasource successfully make an purchase',
+        () async {
+          final tId = faker.guid.guid();
+          final tCustomerModel = CustomerModel(
+            id: faker.guid.guid(),
+            name: faker.person.name(),
+            balance: faker.randomGenerator.decimal(min: 1000),
+          );
+          when(mockedDatasource.purchaseProduct(id: tId))
+              .thenAnswer((_) async => tCustomerModel);
+
+          final customer = await repository.purchaseProduct(id: tId);
+
+          expect(customer, Right(tCustomerModel));
+          verify(mockedDatasource.purchaseProduct(id: tId));
+          verifyNoMoreInteractions(mockedDatasource);
+        },
+      );
+
+      test(
+        'Should return [ServerFailure] when datasource throws [ServerException]',
+        () async {
+          final tId = faker.guid.guid();
+          final tException = ServerException(
+            message: faker.lorem.sentence(),
+            code: faker.randomGenerator.integer(500, min: 400).toString(),
+          );
+          when(mockedDatasource.purchaseProduct(id: tId)).thenThrow(tException);
+
+          final failure = await repository.purchaseProduct(id: tId);
+
+          expect(
+            failure,
+            Left(ServerFailure(
+              code: tException.code,
+              message: tException.message,
+            )),
+          );
+          verify(mockedDatasource.purchaseProduct(id: tId));
+          verifyNoMoreInteractions(mockedDatasource);
+        },
+      );
+    });
+
+    runTestOffline(() {
+      test(
+        'Should return [NoInternetFailure] when device has no connection',
+        () async {
+          final tId = faker.guid.guid();
+          final failure = await repository.purchaseProduct(id: tId);
+
+          expect(failure, Left(NoInternetFailure()));
+          verify(repository.purchaseProduct(id: tId));
+          verifyZeroInteractions(mockedDatasource);
+        },
+      );
+    });
+  });
 }

@@ -64,4 +64,47 @@ void main() {
       },
     );
   });
+
+  group('purchaseProduct', () {
+    test(
+      'Should set at [Customer] store obsevable when usecase successfully returns Entity',
+      () async {
+        final tId = faker.guid.guid();
+        final tCustomer = Customer(
+          id: faker.guid.guid(),
+          name: faker.person.name(),
+          balance: faker.randomGenerator.decimal(min: 1000),
+        );
+
+        when(purchaseProductUseCase(any))
+            .thenAnswer((_) async => Right(tCustomer));
+
+        expect(store.customer, null);
+
+        await store.purchaseProduct(id: tId);
+
+        expect(store.customer, tCustomer);
+        verify(purchaseProductUseCase(PurchaseProductParams(tId)));
+        verifyNoMoreInteractions(purchaseProductUseCase);
+      },
+    );
+
+    test(
+      'Should throw [Failure] when usecase return any [Failure]',
+      () async {
+        final tId = faker.guid.guid();
+        final tFailure = ServerFailure(message: faker.lorem.sentence());
+        when(purchaseProductUseCase(any))
+            .thenAnswer((_) async => Left(tFailure));
+
+        expect(store.customer, null);
+
+        final call = store.purchaseProduct;
+
+        expect(() => call(id: tId), throwsA(isInstanceOf<ServerFailure>()));
+        verify(purchaseProductUseCase(PurchaseProductParams(tId)));
+        verifyNoMoreInteractions(purchaseProductUseCase);
+      },
+    );
+  });
 }
