@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'core/platform/scaffold_handler.dart';
 
 import 'core/config/app_setup.dart';
 import 'core/errors/error_widget.dart';
 import 'core/navigation/app_navigator.dart';
 import 'core/navigation/routes.dart';
+import 'core/platform/scaffold_handler.dart';
 import 'core/ui/theme/main_theme.dart';
 import 'modules/customer/infra/customer_setup.dart';
+import 'modules/products/infra/product_setup.dart';
 
 void main() {
   runApp(NuChallenge());
@@ -28,6 +29,7 @@ class _NuChallengeState extends State<NuChallenge> {
     initApp = Future(() async {
       await AppSetup.init();
       CustomerSetup().init();
+      ProductSetup().init();
     });
     super.initState();
   }

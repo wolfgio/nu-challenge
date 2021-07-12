@@ -59,7 +59,7 @@ void main() {
         );
         verify(mockGraphqlAdapterTest.runQuery(
           query: getProductsQuery,
-          fetchPolicy: FetchPolicy.networkOnly,
+          fetchPolicy: FetchPolicy.noCache,
         ));
         verifyNoMoreInteractions(mockGraphqlAdapterTest);
       },
@@ -85,7 +85,7 @@ void main() {
         );
         verify(mockGraphqlAdapterTest.runQuery(
           query: getProductsQuery,
-          fetchPolicy: FetchPolicy.networkOnly,
+          fetchPolicy: FetchPolicy.noCache,
         ));
         verifyNoMoreInteractions(mockGraphqlAdapterTest);
       },

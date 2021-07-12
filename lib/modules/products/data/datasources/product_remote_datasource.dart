@@ -20,7 +20,7 @@ class ProductRemoteDatasourceImpl implements ProductRemoteDatasource {
   Future<List<ProductModel>?> getProducts() async {
     final exceptionORProducts = await graphQlAdapter.runQuery(
       query: getProductsQuery,
-      fetchPolicy: FetchPolicy.networkOnly,
+      fetchPolicy: FetchPolicy.noCache,
     );
 
     return exceptionORProducts.fold(
@@ -44,8 +44,7 @@ class ProductRemoteDatasourceImpl implements ProductRemoteDatasource {
       },
       (res) {
         if (res is QueryResult) {
-          final offers =
-              res.data?['viewer']['offers'] as List<Map<String, dynamic>>;
+          final offers = res.data?['viewer']['offers'] as List<dynamic>;
 
           return offers
               .map((offer) => ProductModel.fromGraphQl(offer))

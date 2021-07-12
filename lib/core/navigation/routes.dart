@@ -8,6 +8,7 @@ final Map<String, Widget Function(BuildContext)> routes = {
   '/': (_) => SplashScreen(appNavigator: GetIt.I()),
   '/home': (_) => HomeScreen(
         customerStore: GetIt.I(),
+        productStore: GetIt.I(),
         scaffoldHandler: GetIt.I(),
       ),
 };
