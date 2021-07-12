@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 import '../../../../../core/platform/currency_formats.dart';
 import '../../../../../core/ui/styles/colors.dart';
@@ -10,10 +9,12 @@ class ProductCard extends StatelessWidget {
   final Product product;
   final Function(String id)? onPress;
   final bool isLoading;
+  final CurrencyFormats currencyFormats;
 
   const ProductCard({
     Key? key,
     required this.product,
+    required this.currencyFormats,
     this.onPress,
     this.isLoading = false,
   }) : super(key: key);
@@ -29,44 +30,60 @@ class ProductCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(product.name, style: textTheme.headline5),
+              Text(
+                product.name,
+                semanticsLabel: 'Product name',
+                style: textTheme.headline5,
+              ),
               SizedBox(height: 20),
-              AspectRatio(
-                child: ProductCardImage(url: product.imageUrl),
-                aspectRatio: 16 / 9,
+              Semantics(
+                child: AspectRatio(
+                  child: ProductCardImage(url: product.imageUrl),
+                  aspectRatio: 16 / 9,
+                ),
+                label: 'Product image',
               ),
               SizedBox(height: 12),
-              Text(
-                product.description,
-                style: textTheme.subtitle2,
+              Flexible(
+                flex: 1,
+                child: Text(
+                  product.description,
+                  semanticsLabel: 'Product description',
+                  style: textTheme.subtitle2,
+                ),
               ),
               SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    GetIt.I<CurrencyFormats>().formatCurrency(product.price),
+                    currencyFormats.formatCurrency(product.price),
+                    semanticsLabel: 'Product Price',
                   ),
-                  ElevatedButton.icon(
-                    onPressed: onPress != null && !isLoading
-                        ? () => onPress!(product.id)
-                        : null,
-                    icon: !isLoading
-                        ? Icon(Icons.shopping_cart_outlined)
-                        : Container(),
-                    label: isLoading
-                        ? Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                            child: SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                color: ColorsPallete.accent,
-                                strokeWidth: 2,
+                  Semantics(
+                    label: 'Buy Button',
+                    child: ElevatedButton.icon(
+                      onPressed: onPress != null && !isLoading
+                          ? () => onPress!(product.id)
+                          : null,
+                      icon: !isLoading
+                          ? Icon(Icons.shopping_cart_outlined)
+                          : Container(),
+                      label: isLoading
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: SizedBox(
+                                height: 20,
+                                width: 20,
+                                child: CircularProgressIndicator(
+                                  color: ColorsPallete.accent,
+                                  strokeWidth: 2,
+                                ),
                               ),
-                            ),
-                          )
-                        : Text('Buy'),
+                            )
+                          : Text('Buy'),
+                    ),
                   )
                 ],
               )

@@ -10,5 +10,6 @@ final Map<String, Widget Function(BuildContext)> routes = {
         customerStore: GetIt.I(),
         productStore: GetIt.I(),
         scaffoldHandler: GetIt.I(),
+        currencyFormats: GetIt.I(),
       ),
 };

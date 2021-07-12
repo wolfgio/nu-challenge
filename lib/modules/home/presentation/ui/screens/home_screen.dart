@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../../core/errors/failures.dart';
+import '../../../../../core/platform/currency_formats.dart';
 import '../../../../../core/platform/scaffold_handler.dart';
 import '../../../../../core/ui/styles/colors.dart';
 import '../../../../customer/presentation/mobx/customer_store.dart';
@@ -13,12 +14,14 @@ class HomeScreen extends StatefulWidget {
   final CustomerStore customerStore;
   final ProductStore productStore;
   final ScaffoldHandler scaffoldHandler;
+  final CurrencyFormats currencyFormats;
 
   const HomeScreen({
     Key? key,
     required this.customerStore,
     required this.productStore,
     required this.scaffoldHandler,
+    required this.currencyFormats,
   }) : super(key: key);
 
   @override
@@ -118,6 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           product: productStore.products![index],
                           isLoading: customerLoading,
                           onPress: _purchaseProduct,
+                          currencyFormats: widget.currencyFormats,
                         ),
                       );
                     }
@@ -126,6 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       product: productStore.products![index],
                       onPress: _purchaseProduct,
                       isLoading: customerLoading,
+                      currencyFormats: widget.currencyFormats,
                     );
                   },
                   childCount: widget.productStore.products?.length ?? 0,

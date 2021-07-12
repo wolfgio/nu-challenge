@@ -9,7 +9,7 @@ import 'package:nu_challenge/modules/products/domain/entities/product.dart';
 import 'package:nu_challenge/modules/products/domain/usecases/get_products_usescase.dart';
 import 'package:nu_challenge/modules/products/presentation/mobx/product_store.dart';
 
-import 'product_store_test.mocks.dart';
+import '../mobx/product_store_test.mocks.dart';
 
 @GenerateMocks([GetProductsUseCase])
 void main() {
